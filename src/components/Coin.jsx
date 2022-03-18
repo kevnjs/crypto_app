@@ -12,7 +12,11 @@ const Coin = ({coin}) => {
             <p>{coin.name}</p>
         </div>
         <p className="w-[15%]">{coin.symbol}</p> 
-        <p className='w-[15%]'>$ {Number(coin.price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</p>
+        <p className='w-[15%]'>
+          $ {
+            Number(coin.price) < 0.001 ? Number(coin.price).toFixed(8) : Number(coin.price).toFixed(2).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            }
+        </p>
         <p className='w-[15%]'>
             {
             Number(coin.change) < 0 ? <span className="text-red-500">{Number(coin.change)}%</span> : <span className="text-green-400">+{Number(coin.change)}%</span>
